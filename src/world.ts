@@ -12,8 +12,8 @@ export enum TileType {
     DOOR
 }
 
-const ITEM_COMPONENTS = [Component.HEALTH_BONUS, Component.ARMOR_BONUS_1, Component.ARMOR_BONUS_2, 
-    Component.AMMO_WAND, Component.GAUNTLETS];
+const ITEM_COMPONENTS = [Component.HEALTH_BONUS, Component.ARMOR_BONUS_1, Component.ARMOR_BONUS_2,
+    Component.AMMO_PISTOL, Component.BLUNDERBUSS];
 
 function getTileDescription(type: TileType): string {
     switch (type) {
@@ -66,11 +66,13 @@ export class World {
 
     constructor(width: number, height: number) {
         this.tiles = new Map();
-        this.map = new Uniform(width, height, {});
+        this.map = new Uniform(width, height, {
+            roomDugPercentage: 0.8
+        });
 
         // Create the map tiles
         this.map.create((x, y, type) => {
-            let isPassable = (type == 1) ? false : true;
+            let isPassable = (type != 1);
             this.tiles[x + "," + y] = new MapTile(x, y, isPassable, false);
         });
 

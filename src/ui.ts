@@ -24,8 +24,8 @@ function drawHelp(display: Display) {
     display.drawText(0, 0, "Help");
     display.drawText(0, 1, "====");
     display.drawText(0, 3, "Stats: Hp=health, Ar=armor, Eq=equipped weapon (ammo range damage)");
-    display.drawText(0, 5, "Movement: (arrow keys) (Moving into an enemy attacks with the staff)");
-    display.drawText(0, 7, "Attack: a");
+    display.drawText(0, 5, "Movement: (arrow keys) (Moving into an enemy attacks with current weapon)");
+    display.drawText(0, 7, "Attack: a (target ranged weapon attack)");
     display.drawText(0, 9, "Descend stairs: d");
     display.drawText(0, 11, "Cancel: ESC key");
     display.drawText(0, 13, "Confirm: RETURN key (or ENTER)");
@@ -40,7 +40,7 @@ function drawStats(env: Env) {
     let weapon = getWeapon(player.weapon);
 
     let shots = "";
-    if ([Weapon.NONE, Weapon.STAFF, Weapon.GAUNTLETS].indexOf(weapon.type) < 0) {
+    if ([Weapon.NONE, Weapon.KNIFE, Weapon.BLUNDERBUSS].indexOf(weapon.type) < 0) {
         shots = `: %c{${constants.COL_fg_weapon}}${env.player.inventory.getAmmo(player.weapon)}`;
     }
     let range = `range: ${weapon.range} `;

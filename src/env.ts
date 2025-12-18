@@ -20,15 +20,15 @@ function factoryCrystalVial(): Entity {
     return healthBonus;
 }
 
-function factorySilverShield(): Entity {
-    let ent = new Entity('Silver Shield', 'â', [Component.ARMOR_BONUS_1]);
+function factoryBuffCoat(): Entity {
+    let ent = new Entity('Buff Coat', 'â', [Component.ARMOR_BONUS_1]);
     ent.passable = true;
     ent.fg = constants.COL_fg_armor;
     return ent;
 }
 
-function factoryEnchantedShield(): Entity {
-    let ent = new Entity('Enchanted Shield', 'Â', [Component.ARMOR_BONUS_2]);
+function factoryCuirass(): Entity {
+    let ent = new Entity('Cuirass', 'Â', [Component.ARMOR_BONUS_2]);
     ent.passable = true;
     ent.fg = constants.COL_fg_armor;
     return ent;
@@ -41,15 +41,15 @@ function factoryGargoyle(): Entity {
     return g;
 }
 
-function factoryAmmoWand(): Entity {
-    let a = new Entity('Wand Crystal', 'ẇ', [Component.AMMO_WAND]);
+function factoryAmmoPistol(): Entity {
+    let a = new Entity('Pistol Balls', 'ẇ', [Component.AMMO_PISTOL]);
     a.passable = true;
     a.fg = constants.COL_fg_weapon;
     return a;
 }
 
-function factoryGauntlets(): Entity {
-    let a = new Entity('Gauntlets of the Necromancer', 'g', [Component.GAUNTLETS]);
+function factoryBlunderbuss(): Entity {
+    let a = new Entity('Blunderbuss', 'b', [Component.BLUNDERBUSS]);
     a.passable = true;
     a.fg = constants.COL_fg_armor;
     return a;
@@ -136,16 +136,16 @@ export class Env {
 
         // Init bonuses
         this.initRandomlyPlacedEntities(0, 2, factoryCrystalVial);
-        this.initRandomlyPlacedEntities(1, 1, factorySilverShield);
-        this.initRandomlyPlacedEntities(0, 1, factoryEnchantedShield);
-        this.initRandomlyPlacedEntities(1, 1, factoryAmmoWand);
-        this.initRandomlyPlacedEntities(1, 1, factoryGauntlets);
+        this.initRandomlyPlacedEntities(1, 1, factoryBuffCoat);
+        this.initRandomlyPlacedEntities(0, 1, factoryCuirass);
+        this.initRandomlyPlacedEntities(1, 1, factoryAmmoPistol);
+        this.initRandomlyPlacedEntities(1, 1, factoryBlunderbuss);
     }
 
     initNewPlayer(): void {
         let player = new Entity('Player', '@', [Component.PLAYER]);
         player.health = 100;
-        player.weapon = Weapon.ELVEN_WAND;
+        player.weapon = Weapon.PISTOL;
         player.inventory.wandAmmo = 10;
         this.player = player;
     }

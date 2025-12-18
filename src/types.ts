@@ -6,15 +6,15 @@ export enum Component {
     HEALTH_BONUS,
     ARMOR_BONUS_1,
     ARMOR_BONUS_2,
-    AMMO_WAND,
-    GAUNTLETS,
+    AMMO_PISTOL,
+    BLUNDERBUSS, // todo: consider renaming to donderbus for kicks, dutch "thunder pipe"
 }
 
 export enum Weapon {
     NONE, // entity default
-    STAFF,
-    GAUNTLETS,
-    ELVEN_WAND
+    KNIFE,
+    BLUNDERBUSS,
+    PISTOL
 }
 
 export class Distance {
@@ -76,25 +76,25 @@ export class Inventory {
 
     addAmmo(type: Weapon, amount: number): void {
         switch (type) {
-            case Weapon.ELVEN_WAND:
+            case Weapon.PISTOL:
                 this.wandAmmo += amount;
         }
     }
 
     decAmmo(type: Weapon): void {
         switch (type) {
-            case Weapon.ELVEN_WAND:
+            case Weapon.PISTOL:
                 this.wandAmmo -= 1;
         }
     }
 
     getAmmo(type: Weapon): number {
         switch (type) {
-            case Weapon.STAFF:
+            case Weapon.KNIFE:
             case Weapon.NONE:
-            case Weapon.GAUNTLETS:
+            case Weapon.BLUNDERBUSS:
                 return -1;
-            case Weapon.ELVEN_WAND:
+            case Weapon.PISTOL:
                 return this.wandAmmo;
         }
     }

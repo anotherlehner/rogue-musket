@@ -113,16 +113,16 @@ function doPickupItem(env: Env, item: Entity): void {
         env.player.armor = 200;
         msgs.addMessage(`%c{${constants.COL_fg_armor}}equipped ${item.description()}`, env.messages);
         pickedUp = true;
-    } else if (item.hasComponent(Component.AMMO_WAND) && env.player.inventory.wandAmmo < 100) {
+    } else if (item.hasComponent(Component.AMMO_PISTOL) && env.player.inventory.wandAmmo < 100) {
         let ammoAdded = 100 - env.player.inventory.wandAmmo;
         if (ammoAdded > 10) ammoAdded = 10;
-        env.player.inventory.addAmmo(Weapon.ELVEN_WAND, ammoAdded);
+        env.player.inventory.addAmmo(Weapon.PISTOL, ammoAdded);
         msgs.addMessage(`%c{${constants.COL_fg_weapon}}picked up ${item.description()} (+${ammoAdded})`, env.messages);
         pickedUp = true;
-    } else if (item.hasComponent(Component.GAUNTLETS) &&
-        env.player.inventory.weapons.indexOf(Weapon.GAUNTLETS) < 0) {
-        env.player.inventory.weapons.push(Weapon.GAUNTLETS);
-        env.player.weapon = Weapon.GAUNTLETS;
+    } else if (item.hasComponent(Component.BLUNDERBUSS) &&
+        env.player.inventory.weapons.indexOf(Weapon.BLUNDERBUSS) < 0) {
+        env.player.inventory.weapons.push(Weapon.BLUNDERBUSS);
+        env.player.weapon = Weapon.BLUNDERBUSS;
         msgs.addMessage(`%c{${constants.COL_fg_armor}}picked up ${item.description()}`, env.messages);
         // sound(gntact);
         env.world.removeEntity(item);
@@ -154,8 +154,8 @@ function doPlayerMovement(env: Env, keyCode: number) {
         let target = env.world.getCreatureEntityAt(ppos);
         if (!target.isPlayer()) {
             if (env.player.inventory.getAmmo(env.player.weapon) == 0) {
-                msgs.addMessage("%c{blue}out of ammo! attacking with staff instead", env.messages);
-                env.player.weapon = Weapon.STAFF;
+                msgs.addMessage("%c{blue}out of ammo! attacking with knife instead", env.messages);
+                env.player.weapon = Weapon.KNIFE;
             }
             env.targeter.position.set(target.position.x, target.position.y);
             doPlayerAttack(env);
@@ -189,19 +189,19 @@ function playerMove(env: Env, keyCode: number): boolean {
     } else if (env.mode == GameMode.TARGET && constants.MOVEMENT_KEYS.includes(keyCode)) {
         doTargeterMovement(env, keyCode);
     } else if (constants.WEAPON1_KEY == keyCode) {
-        env.player.weapon = Weapon.STAFF;
-        msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped Staff`, env.messages);
+        env.player.weapon = Weapon.KNIFE;
+        msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped knife`, env.messages);
     } else if (constants.WEAPON2_KEY == keyCode) {
-        if (env.player.inventory.weapons.indexOf(Weapon.GAUNTLETS) >= 0) {
-            env.player.weapon = Weapon.GAUNTLETS;
-            msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped Gauntlets of the Necromancer`, env.messages);
+        if (env.player.inventory.weapons.indexOf(Weapon.BLUNDERBUSS) >= 0) {
+            env.player.weapon = Weapon.BLUNDERBUSS;
+            msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped blunderbuss`, env.messages);
             // sound(gntact);
         } else {
             msgs.addMessage("you don't have that weapon yet", env.messages);
         }
     } else if (constants.WEAPON3_KEY == keyCode) {
-        env.player.weapon = Weapon.ELVEN_WAND;
-        msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped Elven Wand`, env.messages);
+        env.player.weapon = Weapon.PISTOL;
+        msgs.addMessage(`%c{${constants.COL_fg_weapon}}equipped pistol`, env.messages);
     } else if (constants.HELP_KEY == keyCode) {
         env.mode = GameMode.HELP;
     }

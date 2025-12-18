@@ -1,5 +1,5 @@
 import * as rot from "rot-js";
-import { Weapon } from "./types";
+import {Weapon} from "./types";
 
 // import impattack1 from 'url:../sounds/impat1.mp3';
 // import wandhit from 'url:../sounds/gldhit.mp3';
@@ -14,8 +14,8 @@ class GameWeapon {
     public type: Weapon;
     public description: string;
 
-    constructor(range: number, damageMin: number, damageMax: number, soundHit: any, type: Weapon, 
-        description: string) {
+    constructor(range: number, damageMin: number, damageMax: number, soundHit: any, type: Weapon,
+                description: string) {
         this.range = range;
         this.damageMin = damageMin;
         this.damageMax = damageMax;
@@ -29,22 +29,29 @@ class GameWeapon {
     }
 }
 
-const NoneWeapon = new GameWeapon(1, 5, 12, null, Weapon.NONE, 'claws');
-const StaffWeapon = new GameWeapon(1, 5, 20, null, Weapon.STAFF, 'staff');
-const GauntletsWeapon = new GameWeapon(2, 15, 60, null, Weapon.GAUNTLETS, 'gauntlets');
-const WandWeapon = new GameWeapon(10, 7, 14, null, Weapon.ELVEN_WAND, 'elven wand');
+const NoneWeapon = new GameWeapon(1, 5, 12, null, Weapon.NONE,
+    'fists');
+
+const KnifeWeapon = new GameWeapon(1, 5, 20, null, Weapon.KNIFE,
+    'knife');
+
+const BlunderbussWeapon = new GameWeapon(2, 15, 60, null, Weapon.BLUNDERBUSS,
+    'blunderbuss');
+
+const PistolWeapon = new GameWeapon(10, 7, 14, null, Weapon.PISTOL,
+    'pistol');
 
 export function getWeapon(weapon: Weapon): GameWeapon {
     switch (weapon) {
         case Weapon.NONE:
             return NoneWeapon;
-        case Weapon.STAFF:
-            return StaffWeapon;
-        case Weapon.GAUNTLETS:
-            return GauntletsWeapon;
-        case Weapon.ELVEN_WAND:
-            return WandWeapon;
+        case Weapon.KNIFE:
+            return KnifeWeapon;
+        case Weapon.BLUNDERBUSS:
+            return BlunderbussWeapon;
+        case Weapon.PISTOL:
+            return PistolWeapon;
         default:
-            throw("Unknown weapon");
+            throw ("Unknown weapon");
     }
 }
