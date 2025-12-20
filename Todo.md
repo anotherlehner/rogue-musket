@@ -1,6 +1,7 @@
 # todo
 
 - REFACTOR! need a refactor quite badly now; weapons, inventory, and ECS most of all
+- bayonets
 - add weapon reloading time for musket, pistol, and blunderbuss
 - move descriptions, names, etc to separate config files so the program isn't cluttered with all the hard coded stuff
 - add black powder to supplement pistol/musket/blunderbuss ammo
